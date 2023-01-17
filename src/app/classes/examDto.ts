@@ -1,6 +1,6 @@
 import { Time } from "@angular/common";
 
-export interface ExamJoinCourseDto {
+export interface ExamDto {
     id: number;
     day: Date;
     hour: Time;

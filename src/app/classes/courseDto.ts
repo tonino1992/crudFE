@@ -1,4 +1,4 @@
-export interface CourseJoinTeacherDto {
+export interface CourseDto {
     id: number;
     subject: string;
     hourAmount: number;
