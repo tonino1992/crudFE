@@ -29,7 +29,15 @@ export class TeacherService {
     return this.http.get<ExamDto[]>(`${this.baseUrl}/${id}/exams`);
   }
 
-  addTeacher(teacherDto: TeacherDto) {
-    return this.http.post<TeacherDto>(`${this.baseUrl}/add`, teacherDto);
+  addTeacher(teacher: TeacherDto) {
+    return this.http.post<TeacherDto>(`${this.baseUrl}/add`, teacher);
+  }
+
+  updateTeacher(teacherDto: TeacherDto) {
+    return this.http.put<TeacherDto>('/teachers/update', teacherDto);
+  }
+
+  deleteTeacher(id: number) {
+    return this.http.delete(`/teachers/delete/${id}`);
   }
 }
