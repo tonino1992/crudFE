@@ -3,7 +3,4 @@ export interface CourseDto {
     subject: string;
     hourAmount: number;
     teacherId: number;
-    teacherName: string;
-    teacherSurname: string;
-    
 }

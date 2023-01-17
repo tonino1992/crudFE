@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CourseDto } from '../classes/courseDto';
-import { ExamDto } from '../classes/examDto';
+import { CourseDto } from '../classes/courseJoinTeacherDto';
+import { ExamDto } from '../classes/examJoinCourseDto';
 import { TeacherDto } from '../classes/teacherDto';
 
 @Injectable({
