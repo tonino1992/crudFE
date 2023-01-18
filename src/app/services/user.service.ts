@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserDto } from '../classes/userDto';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environment/environment';
+import { PersonDto } from '../classes/personDto';
 
 
 @Injectable({
@@ -9,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  private baseUrl = '';
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -21,8 +23,8 @@ export class UserService {
     return this.http.post<UserDto>(`${this.baseUrl}/users/add`, userDto);
   }
 
-  login(userDto: UserDto): Observable<UserDto> {
-    return this.http.post<UserDto>(`${this.baseUrl}/users/login`, userDto);
+  login(userDto: UserDto): Observable<PersonDto> {
+    return this.http.post<PersonDto>(`${this.baseUrl}/users/login`, userDto);
   }
 
   deleteUser(id: string): Observable<any> {

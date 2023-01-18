@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { map } from 'rxjs';
+import { PersonDto } from '../classes/personDto';
 import { UserDto } from '../classes/userDto';
 import { UserRole } from '../enums/user-role';
 import { UserService } from '../services/user.service';
@@ -12,15 +14,33 @@ export class LoginComponent {
   userId: string = '';
   password: string = '';
   role: UserRole = UserRole.NOTHING;
-  
- 
+
   constructor(private userService: UserService) {}
- 
+  
   login() {
-    const userDto: UserDto = { userId: this.userId, password: this.password, role: this.role};
-    this.userService.login(userDto).subscribe(user => {
-      console.log(user);
-    });
+    if (this.userId !== '' && this.password !== '') {
+      const userDto: UserDto = { userId: this.userId, password: this.password, role: this.role };
+      this.userService.login(userDto).subscribe(
+        (user: PersonDto) => {
+          if (user) {
+            alert("Login effettuato con successo!");
+          } else {
+            alert("Utente non trovato!");
+          }
+        },
+        error => {
+          alert("Utente non trovato!");
+        }
+      );
+    } else {
+      alert("Per favore, compila tutti i campi!");
+    }
   }
+  
+  
+  
 }
+
+
+
 
