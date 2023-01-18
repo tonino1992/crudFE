@@ -1,5 +1,5 @@
-export enum UserRole {
-    STUDENT = 'STUDENT',
-    TEACHER = 'TEACHER'
-  }
-  
+export enum UserRole{
+    STUDENT = "student",
+    TEACHER = "teacher",
+    NOTHING = "",
+}
