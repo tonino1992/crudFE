@@ -1,5 +1,3 @@
 export enum UserRole{
-    STUDENT = "student",
-    TEACHER = "teacher",
-    NOTHING = "",
+    STUDENT, TEACHER, NOTHING
 }
