@@ -20,10 +20,12 @@ export class LoginComponent {
   login() {
     if (this.userId !== '' && this.password !== '') {
       const userDto: UserDto = { userId: this.userId, password: this.password, role: this.role };
+      console.log(userDto);
       this.userService.login(userDto).subscribe(
         (user: PersonDto) => {
           if (user) {
             alert("Login effettuato con successo!");
+            console.log(user);
           } else {
             alert("Utente non trovato!");
           }
