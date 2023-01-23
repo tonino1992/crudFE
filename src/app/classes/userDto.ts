@@ -4,6 +4,5 @@ export interface UserDto {
     userId: string;
     password: string;
     role: UserRole;
-
   }
   

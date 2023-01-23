@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { map } from 'rxjs';
 import { PersonDto } from '../classes/personDto';
 import { UserDto } from '../classes/userDto';
 import { UserRole } from '../enums/user-role';

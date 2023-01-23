@@ -59,6 +59,17 @@
                 </div>
                 <input type="password" name="password" class="form-control input_pass" [(ngModel)]="password" placeholder="Password">
               </div>
+              <div class="input-group mb-3">
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                      <path d="M2.5 9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9z"/>
+                      <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+                    </svg>
+                  </span>
+                </div>
+                <input type="password" name="confirmPassword" class="form-control input_user" [(ngModel)]="confirmPassword" placeholder="Conferma password">
+              </div>              
               <div class="input-group mb-2">
                 <div class="input-group-append">
                   <span class="input-group-text">
@@ -68,9 +79,10 @@
                     </svg>
                   </span>
                 </div>
-                <select name="role" [(ngModel)]="role" class="form-control input_pass" placeholder="Role">
-                    <option value="TEACHER">Teacher</option>
-                    <option value="STUDENT">Student</option>
+                <select name="role" [(ngModel)]="role" class="form-control input_pass" placeholder="Ruolo">
+                  <option value="">- Seleziona un ruolo -</option>
+                    <option value="TEACHER">Insegnante</option>
+                    <option value="STUDENT">Studente</option>
                 </select>
               </div>
               <div class="d-flex justify-content-center mt-3 login_container">
