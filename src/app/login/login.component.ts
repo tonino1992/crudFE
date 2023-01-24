@@ -13,10 +13,15 @@ export class LoginComponent {
   userId: string = '';
   password: string = '';
   role: UserRole = UserRole.NOTHING;
+  showPassword = false;
 
   constructor(private userService: UserService) {}
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
   
-  login() {
+  login(): void {
     if (this.userId !== '' && this.password !== '') {
       const userDto: UserDto = { userId: this.userId, password: this.password, role: this.role };
       console.log(userDto);

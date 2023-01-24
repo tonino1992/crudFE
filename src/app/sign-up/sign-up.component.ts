@@ -19,9 +19,18 @@ export class SignUpComponent {
   surname: string = '';
   dateOfBirth: Date = new Date;
   name: string = '';
+  showPassword = false;
+  showConfirmedPassword = false;
 
   constructor(private teacherService: TeacherService, private studentService: StudentService) {}
 
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleConfirmedPassword() {
+    this.showConfirmedPassword = !this.showConfirmedPassword;
+  }
 
   signup() {
     if (!this.passwordConfirmed()){
