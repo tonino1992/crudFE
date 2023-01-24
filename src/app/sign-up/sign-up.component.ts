@@ -17,7 +17,7 @@ export class SignUpComponent {
   confirmPassword: string = '';
   role: string = '';
   surname: string = '';
-  age: string = '';
+  dateOfBirth: Date = new Date;
   name: string = '';
 
   constructor(private teacherService: TeacherService, private studentService: StudentService) {}
@@ -28,7 +28,7 @@ export class SignUpComponent {
       alert("Controlla la password!");
       return;
     }
-    if (this.userId !== '' && this.password !== '' && this.confirmPassword !== '' && this.role !== '' && this.name !== '' && this.surname !== '' && parseInt(this.age) >= 18) {
+    if (this.userId !== '' && this.password !== '' && this.confirmPassword !== '' && this.role !== '' && this.name !== '' && this.surname !== '' && this.dateOfBirth !== null) {
       if (this.role === 'TEACHER') {
         const teacherDto: TeacherDto = {
           id: 0,
@@ -37,7 +37,7 @@ export class SignUpComponent {
           role: UserRole[this.role] as UserRole,
           name: this.name,
           surname: this.surname,
-          age: parseInt(this.age)
+          dateOfBirth: this.dateOfBirth
       }; 
       console.log(teacherDto);
              this.teacherService.addTeacher(teacherDto).subscribe({
@@ -59,7 +59,7 @@ export class SignUpComponent {
           role: UserRole[this.role] as UserRole,
           name: this.name,
           surname: this.surname,
-          age: parseInt(this.age)
+          dateOfBirth: this.dateOfBirth
         };
         console.log(studentDto);
           this.studentService.addStudent(studentDto).subscribe({

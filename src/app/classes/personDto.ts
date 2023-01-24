@@ -5,7 +5,7 @@ export interface PersonDto {
     userId: string;
     name: string;
     surname: string;
-    age: number;
+    dateOfBirth: Date;
     role: UserRole;
 
 }
