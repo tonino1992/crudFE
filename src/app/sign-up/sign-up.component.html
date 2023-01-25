@@ -70,7 +70,7 @@
               </span>
             </div>
             <input type="{{ showPassword ? 'text' : 'password' }}"
-              class="form-control input_pass {{ showPassword ? 'show-password' : '' }}" [(ngModel)]="password"
+              class="form-control input_pass {{ showPassword ? 'show-password' : '' }}" [(ngModel)]="password" name = "password"
               placeholder="Password">
             <div class="input-group-append">
               <span class="input-group-text password-toggle" (click)="togglePassword()">
@@ -101,7 +101,7 @@
               </span>
             </div>
             <input type="{{ showConfirmedPassword ? 'text' : 'password' }}"
-              class="form-control input_pass {{ showPassword ? 'show-password' : '' }}" [(ngModel)]="confirmPassword"
+              class="form-control input_pass {{ showPassword ? 'show-password' : '' }}" [(ngModel)]="confirmPassword" name = "confirmPassword"
               placeholder="Conferma password">
             <div class="input-group-append">
               <span class="input-group-text password-toggle" (click)="toggleConfirmedPassword()">

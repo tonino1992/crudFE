@@ -13,6 +13,7 @@ import { TeacherService } from '../services/teacher.service';
 })
 export class SignUpComponent {
   userId: string = '';
+  email: string = '';
   password: string = '';
   confirmPassword: string = '';
   role: string = '';
@@ -37,11 +38,12 @@ export class SignUpComponent {
       alert("Controlla la password!");
       return;
     }
-    if (this.userId !== '' && this.password !== '' && this.confirmPassword !== '' && this.role !== '' && this.name !== '' && this.surname !== '' && this.dateOfBirth !== null) {
+    if (this.userId !== '' && this.email != '' && this.password !== '' && this.confirmPassword !== '' && this.role !== '' && this.name !== '' && this.surname !== '' && this.dateOfBirth !== null) {
       if (this.role === 'TEACHER') {
         const teacherDto: TeacherDto = {
           id: 0,
           userId: this.userId,
+          email: this.email,
           password: this.password,
           role: UserRole[this.role] as UserRole,
           name: this.name,
@@ -64,6 +66,7 @@ export class SignUpComponent {
         const studentDto: StudentDto = {
           id: 0,
           userId: this.userId,
+          email: this.email,
           password: this.password,
           role: UserRole[this.role] as UserRole,
           name: this.name,

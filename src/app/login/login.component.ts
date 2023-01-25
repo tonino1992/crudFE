@@ -12,6 +12,7 @@ import { UserService } from '../services/user.service';
 export class LoginComponent {
   userId: string = '';
   password: string = '';
+  email: string = ''
   role: UserRole = UserRole.NOTHING;
   showPassword = false;
 
@@ -23,7 +24,7 @@ export class LoginComponent {
   
   login(): void {
     if (this.userId !== '' && this.password !== '') {
-      const userDto: UserDto = { userId: this.userId, password: this.password, role: this.role };
+      const userDto: UserDto = { userId: this.userId, email: this.email, password: this.password, role: this.role };
       console.log(userDto);
       this.userService.login(userDto).subscribe(
         (user: PersonDto) => {
