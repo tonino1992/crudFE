@@ -27,8 +27,12 @@ export class UserService {
     return this.http.post<PersonDto>(`${this.baseUrl}/users/login`, userDto);
   }
 
-  deleteUser(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/users/delete/${id}`);
+  deleteUser(userId: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/users/delete/${userId}`);
+  }
+
+  recuperaPassword(userId: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/users/recupera-password`, userId);
   }
 
 }
