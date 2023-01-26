@@ -59,7 +59,7 @@ export class SignUpComponent {
               }
             },
             error: (error: HttpErrorResponse) => {
-              alert(error.message);
+              alert("User ID già in uso");
             }
       });
       } else if (this.role === 'STUDENT'){
@@ -82,12 +82,12 @@ export class SignUpComponent {
               }
             },
             error: (error: HttpErrorResponse) => {
-              alert(error.message);
+              alert("User ID già in uso");
             }
       });
       }
     } else {
-      alert("Per favore, compila tutti i campi o verifica che l'età inserita sia almeno 18");
+      alert("Per favore, compila tutti i campi!");
     }
   }
 
