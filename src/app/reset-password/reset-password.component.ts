@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { TokenService } from '../services/token.service';
@@ -22,8 +22,9 @@ export class ResetPasswordComponent implements OnInit {
   showConfirmedPassword = false;
 
   constructor(
-    private router: Router,
-    private tokenService: TokenService) { }
+    private rout: ActivatedRoute,
+    private tokenService: TokenService,
+    private router: Router) { }
 
   togglePassword() {
     this.showPassword = !this.showPassword;
@@ -34,8 +35,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const position = this.router.url.lastIndexOf('/');
-    const token = this.router.url.substring(position + 1);
+    const token = this.rout.snapshot.paramMap.get('id')!;
     this.tokenService.verifyTokenValidity(token).subscribe({
       next: (userId: string) => {
         this.userId = userId;
