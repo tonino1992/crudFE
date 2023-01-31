@@ -13,11 +13,11 @@ import { UserRole } from '../enums/user-role';
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit {
-  userId!: string;
-  password: string = '';
-  confirmedPassword: string = '';
-  error: number = 0;
-  message: string = '';
+  userId: string;
+  password: string;
+  confirmedPassword: string;
+  error = false;
+  message: string;
   showPassword = false;
   showConfirmedPassword = false;
 
@@ -45,11 +45,11 @@ export class ResetPasswordComponent implements OnInit {
       error: (error: HttpErrorResponse) => {
         if (error.status === 404) {
           console.log("Token non valido");
-          this.error = 1;
+          this.error = true;
           this.message = "Il link non è valido, prova a richiederne un altro!";
         } else if (error.status === 401) {
           console.log("Token scaduto");
-          this.error = 2;
+          this.error = true;
           this.message = "Il link è scaduto, richiedine un altro!";
         }
         else {
@@ -70,7 +70,7 @@ export class ResetPasswordComponent implements OnInit {
     else if (this.password !== this.confirmedPassword) {
       alert("Le password sono diverse!")
     } else {
-      const userDto: UserDto = { userId: this.userId, password: this.password, email: '', role: UserRole.NOTHING }
+      const userDto = { userId: this.userId, password: this.password }
       console.log(userDto);
       this.tokenService.changePassword(userDto).subscribe({
         next: () => {

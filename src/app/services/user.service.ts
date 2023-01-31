@@ -23,7 +23,7 @@ export class UserService {
     return this.http.post<UserDto>(`${this.baseUrl}/users/add`, userDto);
   }
 
-  login(userDto: UserDto): Observable<PersonDto> {
+  login(userDto: {userId: string, password: string}): Observable<PersonDto> {
     return this.http.post<PersonDto>(`${this.baseUrl}/users/login`, userDto);
   }
 

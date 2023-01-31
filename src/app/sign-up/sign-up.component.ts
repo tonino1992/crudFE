@@ -12,14 +12,14 @@ import { TeacherService } from '../services/teacher.service';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent {
-  userId: string = '';
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
-  role: string = '';
-  surname: string = '';
-  dateOfBirth: Date = new Date;
-  name: string = '';
+  userId: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  role: string;
+  surname: string;
+  dateOfBirth: Date;
+  name: string;
   showPassword = false;
   showConfirmedPassword = false;
 

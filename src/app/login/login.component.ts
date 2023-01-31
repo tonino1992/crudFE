@@ -1,7 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { PersonDto } from '../classes/personDto';
-import { UserDto } from '../classes/userDto';
-import { UserRole } from '../enums/user-role';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -10,42 +9,51 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  userId: string = '';
-  password: string = '';
-  email: string = ''
-  role: UserRole = UserRole.NOTHING;
+  userId: string;
+  password: string;
   showPassword = false;
+  error = false;
+  message: string;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
-  
+
   login(): void {
     if (this.userId !== '' && this.password !== '') {
-      const userDto: UserDto = { userId: this.userId, email: this.email, password: this.password, role: this.role };
+      const userDto = { userId: this.userId, password: this.password };
       console.log(userDto);
-      this.userService.login(userDto).subscribe(
-        (user: PersonDto) => {
-          if (user) {
-            alert("Login effettuato con successo!");
-            console.log(user);
-          } else {
-            alert("Utente non trovato!");
-          }
+      this.userService.login(userDto).subscribe({
+        next: (userDto: PersonDto) => {
+          this.message = "Login effettuato con successo"
+          console.log(userDto)
         },
-        error => {
-          alert("Utente non trovato!");
+        error: (err: HttpErrorResponse) => {
+          if (err.status === 404) {
+            console.log("Token non valido");
+            this.error = true;
+            this.message = "Il link non è valido, prova a richiederne un altro!";
+          } else if (err.status === 401) {
+            this.error = true;
+            this.message = "Il link è scaduto, richiedine un altro!";
+          }
+          else if (err.status === 500) {
+            this.error = true;
+            this.message = "Errore interno!"
+          }
+          else {
+            this.error = true;
+            this.message = err.error;
+          }
         }
-      );
-    } else {
-      alert("Per favore, compila tutti i campi!");
+      })
     }
+
+
+
   }
-  
-  
-  
 }
 
 

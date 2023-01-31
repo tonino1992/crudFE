@@ -8,7 +8,7 @@ import { UserService } from '../services/user.service';
 })
 export class ResetPasswordRequestComponent {
 
-  userId: string = '';
+  userId: string;
 
   constructor(private userService: UserService) { }
 
