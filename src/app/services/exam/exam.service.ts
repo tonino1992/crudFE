@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ExamDto } from '../classes/examDto';
-import { ExamJoinCourseDto } from '../classes/examJoinCourseDto';
-import { StudentDto } from '../classes/studentDto';
+import { ExamDto } from '../../classes/examDto';
+import { ExamJoinCourseDto } from '../../classes/examJoinCourseDto';
+import { StudentDto } from '../../classes/studentDto';
 
 @Injectable({
   providedIn: 'root'

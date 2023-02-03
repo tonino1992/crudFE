@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { TokenService } from '../services/token.service';
-import { UserDto } from '../classes/userDto';
-import { UserRole } from '../enums/user-role';
+import { TokenService } from '../../services/token/token.service';
+import { UserDto } from '../../classes/userDto';
+import { UserRole } from '../../classes/enums/user-role';
 
 @Component({
   selector: 'app-reset-password',

@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
-import { CourseDto } from '../classes/courseDto';
-import { ExamDto } from '../classes/examDto';
-import { TeacherDto } from '../classes/teacherDto';
+import { CourseDto } from '../../classes/courseDto';
+import { ExamDto } from '../../classes/examDto';
+import { TeacherDto } from '../../classes/teacherDto';
 
 @Injectable({
   providedIn: 'root'

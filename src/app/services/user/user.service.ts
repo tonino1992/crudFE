@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserDto } from '../classes/userDto';
+import { UserDto } from '../../classes/userDto';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
-import { PersonDto } from '../classes/personDto';
+import { PersonDto } from '../../classes/personDto';
 
 
 @Injectable({
