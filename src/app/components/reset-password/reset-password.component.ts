@@ -1,11 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
 import { TokenService } from '../../services/token/token.service';
-import { UserDto } from '../../classes/userDto';
-import { UserRole } from '../../classes/enums/user-role';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reset-password',
@@ -14,12 +11,13 @@ import { UserRole } from '../../classes/enums/user-role';
 })
 export class ResetPasswordComponent implements OnInit {
   userId: string;
-  password: string;
-  confirmedPassword: string;
+  resetPasswordForm: FormGroup;
   error = false;
   message: string;
   showPassword = false;
   showConfirmedPassword = false;
+
+  passwordValidator: ValidatorFn = Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/);
 
   constructor(
     private rout: ActivatedRoute,
@@ -34,28 +32,39 @@ export class ResetPasswordComponent implements OnInit {
     this.showConfirmedPassword = !this.showConfirmedPassword;
   }
 
+  isValidColor(name: string): string {
+    if (this.resetPasswordForm.get(name)!.touched) {
+      if (this.resetPasswordForm.get(name)!.valid) {
+        return 'is-valid';
+      }
+      return 'is-invalid';
+    }
+    return '';
+  }
+
   ngOnInit(): void {
     const token = this.rout.snapshot.paramMap.get('id')!;
     this.tokenService.verifyTokenValidity(token).subscribe({
       next: (userId: string) => {
         this.userId = userId;
-        console.log(this.userId)
-        console.log(userId)
       },
-      error: (error: HttpErrorResponse) => {
-        if (error.status === 404) {
-          console.log("Token non valido");
+      error: (err: HttpErrorResponse) => {
+        if (err.status === 404) {
           this.error = true;
           this.message = "Il link non è valido, prova a richiederne un altro!";
-        } else if (error.status === 401) {
-          console.log("Token scaduto");
+        } else if (err.status === 401) {
           this.error = true;
           this.message = "Il link è scaduto, richiedine un altro!";
         }
         else {
-          alert(error.message)
+          alert(err.message)
         }
       }
+    })
+
+    this.resetPasswordForm = new FormGroup({
+      password: new FormControl(null, [Validators.required, this.passwordValidator]),
+      confirmPassword: new FormControl(null, [Validators.required, this.passwordValidator]),
     })
   }
 
@@ -64,14 +73,22 @@ export class ResetPasswordComponent implements OnInit {
 
 
   changePassword() {
-    if (this.password === '' || this.confirmedPassword === '') {
-      alert("Inserisci tutti i campi!")
-    }
-    else if (this.password !== this.confirmedPassword) {
-      alert("Le password sono diverse!")
-    } else {
-      const userDto = { userId: this.userId, password: this.password }
+
+    if (this.resetPasswordForm.valid) {
+      if (this.resetPasswordForm.get('password')!.value !== this.resetPasswordForm.get('confirmPassword')!.value) {
+        this.error = true;
+        this.message = "Le password devono essere uguali";
+        return;
+      }
+
+      const userDto = {
+        userId: this.userId,
+        password: this.resetPasswordForm.get('password')!.value
+      };
+
       console.log(userDto);
+
+
       this.tokenService.changePassword(userDto).subscribe({
         next: () => {
           alert("Password cambiata con successo!");
@@ -83,10 +100,11 @@ export class ResetPasswordComponent implements OnInit {
         }
       }
       );
+    } else {
+      this.error = true;
+      this.message = "Inserisci tutti i campi!";
     }
-
   }
-
 
 }
 

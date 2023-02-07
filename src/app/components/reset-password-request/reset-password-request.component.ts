@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
 
 @Component({
@@ -6,25 +9,39 @@ import { UserService } from '../../services/user/user.service';
   templateUrl: './reset-password-request.component.html',
   styleUrls: ['./reset-password-request.component.scss']
 })
-export class ResetPasswordRequestComponent {
+export class ResetPasswordRequestComponent implements OnInit {
 
-  userId: string;
+  resetPasswordForm: FormGroup;
+  error = false;
+  message: string;
+  
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
-  sendResetLink() {
-    if (this.userId !== '') {
-      this.userService.recuperaPassword(this.userId)
-        .subscribe(
-          res => {
-            alert("Link per reimpostare la password inviato con successo!");
-          },
-          error => {
-            alert("Errore nell'invio del link, controlla lo user ID che hai inserito sia corretto.");
-          }
-        );
-    }
+  ngOnInit(): void {
+    this.resetPasswordForm = new FormGroup({
+      userId: new FormControl(null, Validators.required),
+    })
   }
 
-
+  sendResetLink() {
+    if (this.resetPasswordForm.valid) {
+      this.userService.recuperaPassword(this.resetPasswordForm.value.userId)
+        .subscribe({
+          next: () => {
+            this.message = "Link per reimpostare la password inviato con successo!";
+            this.router.navigate(['/login']);
+          },
+          error: (err: HttpErrorResponse) => {
+            if (err.status === 404) {
+              this.error = true;
+              this.message = "Invalid username!";
+            } else if (err.status === 500) {
+              this.error = true;
+              this.message = "Internal error!";
+            }
+          }
+        });
+    }
+  }
 }
