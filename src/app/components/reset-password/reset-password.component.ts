@@ -13,6 +13,7 @@ export class ResetPasswordComponent implements OnInit {
   userId: string;
   resetPasswordForm: FormGroup;
   error = false;
+  errorSettings = false;
   message: string;
   showPassword = false;
   showConfirmedPassword = false;
@@ -76,7 +77,7 @@ export class ResetPasswordComponent implements OnInit {
 
     if (this.resetPasswordForm.valid) {
       if (this.resetPasswordForm.get('password')!.value !== this.resetPasswordForm.get('confirmPassword')!.value) {
-        this.error = true;
+        this.errorSettings = true;
         this.message = "Le password devono essere uguali";
         return;
       }
@@ -101,7 +102,7 @@ export class ResetPasswordComponent implements OnInit {
       }
       );
     } else {
-      this.error = true;
+      this.errorSettings = true;
       this.message = "Inserisci tutti i campi!";
     }
   }
