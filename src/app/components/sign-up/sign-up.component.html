@@ -18,7 +18,7 @@
                 </svg>
               </span>
             </div>
-            <input type="text" formControlName="name" class="form-control input_user" placeholder="Nome">
+            <input id="nome" type="text" formControlName="name" class="form-control input_user" placeholder="Nome">
           </div>
           <div class="input-group mb-3">
             <div class="input-group-append">
@@ -44,7 +44,8 @@
                 </svg>
               </span>
             </div>
-            <input type="date" formControlName="dateOfBirth" class="form-control input_user" placeholder="Data di nascita">
+            <input type="text" formControlName="dateOfBirth" class="form-control input_user"
+              placeholder="Data di nascita" onfocus="(this.type='date')" onblur="(this.type='text')">
           </div>
           <div class="input-group mb-3">
             <div class="input-group-append">
@@ -69,7 +70,7 @@
                 </svg>
               </span>
             </div>
-            <input type="email" formControlName="userId" class="form-control input_user" placeholder="Email">
+            <input type="email" formControlName="email" class="form-control input_user" placeholder="Email">
           </div>
           <div class="input-group mb-3">
             <div class="input-group-append">
@@ -113,8 +114,8 @@
               </span>
             </div>
             <input type="{{ showConfirmedPassword ? 'text' : 'password' }}"
-              class="form-control input_pass {{ showPassword ? 'show-password' : '' }}" formControlName="confirmPassword"
-              placeholder="Conferma password">
+              class="form-control input_pass {{ showPassword ? 'show-password' : '' }}"
+              formControlName="confirmPassword" placeholder="Conferma password">
             <div class="input-group-append">
               <span class="input-group-text password-toggle" (click)="toggleConfirmedPassword()">
                 <svg *ngIf="!showConfirmedPassword" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -145,8 +146,8 @@
                 </svg>
               </span>
             </div>
-            <select formControlName="role" class="form-control input_pass" placeholder="Ruolo">
-              <option value="">- Seleziona un ruolo -</option>
+            <select formControlName="role" class="form-control input_pass">
+              <option value="" disabled [selected] = "true">-Seleziona un ruolo-</option>
               <option value="TEACHER">Insegnante</option>
               <option value="STUDENT">Studente</option>
             </select>

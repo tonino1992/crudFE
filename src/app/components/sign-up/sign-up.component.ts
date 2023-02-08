@@ -25,7 +25,7 @@ export class SignUpComponent implements OnInit {
     this.signUpForm = new FormGroup({
       name: new FormControl(null, Validators.required),
       surname: new FormControl(null, Validators.required),
-      dateOfBith: new FormControl(null, Validators.required),
+      dateOfBirth: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
       userId: new FormControl(null, Validators.required),
       password: new FormControl(null, [Validators.required, this.passwordValidator]),
@@ -93,13 +93,15 @@ export class SignUpComponent implements OnInit {
               console.log(user);
             }
           },
-          error: (error: HttpErrorResponse) => {
+          error: (err: HttpErrorResponse) => {
             alert("User ID già in uso");
           }
         });
       }
     } else {
       alert("Per favore, compila tutti i campi!");
+      console.log(this.signUpForm);
+      
     }
   }
 
