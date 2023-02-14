@@ -14,6 +14,8 @@ import { TeacherService } from '../../services/teacher/teacher.service';
 })
 export class SignUpComponent implements OnInit {
 
+  error = false;
+  message: string;
   signUpForm: FormGroup;
   showPassword = false;
   showConfirmedPassword = false;
@@ -69,8 +71,17 @@ export class SignUpComponent implements OnInit {
               console.log(user);
             }
           },
-          error: (error: HttpErrorResponse) => {
-            alert("User ID già in uso");
+          error: (err: HttpErrorResponse) => {
+            if (err.status === 401) {
+              this.error = true;
+              this.message = "User già in uso";
+            } else if (err.status === 500) {
+              this.error = true;
+              this.message = "Errore interno al server";
+            } else {
+              this.error = true;
+              this.message = err.error;
+            }
           }
         });
       } else if (this.signUpForm.value.role === 'STUDENT') {
@@ -94,14 +105,20 @@ export class SignUpComponent implements OnInit {
             }
           },
           error: (err: HttpErrorResponse) => {
-            alert("User ID già in uso");
+            if (err.status === 401) {
+              alert("User già in uso")
+            } else if (err.status === 500) {
+              alert("Errore interno al server")
+            } else {
+              alert(err.error)
+            }
           }
         });
       }
     } else {
       alert("Per favore, compila tutti i campi!");
       console.log(this.signUpForm);
-      
+
     }
   }
 
@@ -109,5 +126,14 @@ export class SignUpComponent implements OnInit {
     return this.signUpForm.value.password === this.signUpForm.value.confirmPassword;
   }
 
+  isValidColor(name: string): string {
+    if (this.signUpForm.get(name)!.touched) {
+      if (this.signUpForm.get(name)!.valid) {
+        return 'is-valid';
+      }
+      return 'is-invalid';
+    }
+    return '';
+  }
 
 }

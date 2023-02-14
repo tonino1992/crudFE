@@ -1,3 +1,6 @@
+<div class="alert alert-danger error-message" *ngIf="error">
+  <p>{{ message }} </p>
+</div>
 <div class="container h-100">
   <div class="d-flex justify-content-center h-100">
     <div class="user_card">
@@ -18,7 +21,7 @@
                 </svg>
               </span>
             </div>
-            <input id="nome" type="text" formControlName="name" class="form-control input_user" placeholder="Nome">
+            <input id="nome" type="text" formControlName="name" class="form-control input_user {{isValidColor('name')}}" placeholder="Nome">
           </div>
           <div class="input-group mb-3">
             <div class="input-group-append">
@@ -30,7 +33,7 @@
                 </svg>
               </span>
             </div>
-            <input type="text" formControlName="surname" class="form-control input_user" placeholder="Cognome">
+            <input type="text" formControlName="surname" class="form-control input_user {{isValidColor('surname')}}" placeholder="Cognome">
           </div>
           <div class="input-group mb-3">
             <div class="input-group-append">
@@ -44,7 +47,7 @@
                 </svg>
               </span>
             </div>
-            <input type="text" formControlName="dateOfBirth" class="form-control input_user"
+            <input type="text" formControlName="dateOfBirth" class="form-control input_user {{isValidColor('dateOfBirth')}}"
               placeholder="Data di nascita" onfocus="(this.type='date')" onblur="(this.type='text')">
           </div>
           <div class="input-group mb-3">
@@ -56,7 +59,7 @@
                 </svg>
               </span>
             </div>
-            <input type="text" formControlName="userId" class="form-control input_user" placeholder="User ID">
+            <input type="text" formControlName="userId" class="form-control input_user {{isValidColor('userId')}}" placeholder="User ID">
           </div>
           <div class="input-group mb-3">
             <div class="input-group-append">
@@ -70,7 +73,7 @@
                 </svg>
               </span>
             </div>
-            <input type="email" formControlName="email" class="form-control input_user" placeholder="Email">
+            <input type="email" formControlName="email" class="form-control input_user {{isValidColor('email')}}" placeholder="Email">
           </div>
           <div class="input-group mb-3">
             <div class="input-group-append">
@@ -83,7 +86,7 @@
               </span>
             </div>
             <input type="{{ showPassword ? 'text' : 'password' }}"
-              class="form-control input_pass {{ showPassword ? 'show-password' : '' }}" formControlName="password"
+              class="form-control input_pass {{ showPassword ? 'show-password' : '' }} {{isValidColor('password')}}" formControlName="password"
               placeholder="Password">
             <div class="input-group-append">
               <span class="input-group-text password-toggle" (click)="togglePassword()">
@@ -114,7 +117,7 @@
               </span>
             </div>
             <input type="{{ showConfirmedPassword ? 'text' : 'password' }}"
-              class="form-control input_pass {{ showPassword ? 'show-password' : '' }}"
+              class="form-control input_pass {{ showPassword ? 'show-password' : '' }} {{isValidColor('confirmPassword')}}"
               formControlName="confirmPassword" placeholder="Conferma password">
             <div class="input-group-append">
               <span class="input-group-text password-toggle" (click)="toggleConfirmedPassword()">
@@ -147,7 +150,7 @@
               </span>
             </div>
             <select formControlName="role" class="form-control input_pass">
-              <option value="" disabled [selected] = "true">-Seleziona un ruolo-</option>
+              <option value="" disabled [selected]="true">-Seleziona un ruolo-</option>
               <option value="TEACHER">Insegnante</option>
               <option value="STUDENT">Studente</option>
             </select>

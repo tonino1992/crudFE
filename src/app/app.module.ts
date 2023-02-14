@@ -8,6 +8,8 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ResetPasswordRequestComponent } from './components/reset-password-request/reset-password-request.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { InsideAppComponent } from './components/inside-app/inside-app.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     LoginComponent,
     SignUpComponent,
     ResetPasswordRequestComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    NavbarComponent,
+    InsideAppComponent
   ],
   imports: [
     BrowserModule,
