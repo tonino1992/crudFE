@@ -50,9 +50,9 @@ export class LoginComponent implements OnInit {
       };
 
       this.userService.login(userDto).subscribe({
-        next: (userDto: PersonDto) => {
+        next: (jwt: string) => {
           this.message = "Login successful";
-          console.log(userDto);
+          console.log(jwt);
         },
         error: (err: HttpErrorResponse) => {
           if (err.status === 404) {
@@ -67,6 +67,8 @@ export class LoginComponent implements OnInit {
           } else {
             this.error = true;
             this.message = err.error;
+            console.log(err.error);
+            
           }
         }
       });

@@ -23,8 +23,8 @@ export class UserService {
     return this.http.post<UserDto>(`${this.baseUrl}/users/add`, userDto);
   }
 
-  login(userDto: {userId: string, password: string}): Observable<PersonDto> {
-    return this.http.post<PersonDto>(`${this.baseUrl}/users/login`, userDto);
+  login(userDto: {userId: string, password: string}): Observable<string> {
+    return this.http.post(`${this.baseUrl}/users/login`, userDto, {responseType: 'text'});
   }
 
   deleteUser(userId: string): Observable<any> {
