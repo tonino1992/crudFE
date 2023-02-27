@@ -4,17 +4,19 @@ import { Observable } from 'rxjs';
 import { CourseJoinTeacherDto } from '../../classes/courseJoinTeacherDto';
 import { StudentCourseDto } from '../../classes/studentCourseDto';
 import { StudentDto } from '../../classes/studentDto';
+import { environment } from 'src/environment/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentCourseService {
-  private baseUrl = '';
 
-  constructor(private http: HttpClient) {}
+  private baseUrl = environment.apiUrl;
 
-  studentCourseIscription(studentCourseDto: StudentCourseDto): Observable<StudentCourseDto> {
+  constructor(private http: HttpClient) { }
+
+  enrollStudentInCourse(studentCourseDto: StudentCourseDto): Observable<StudentCourseDto> {
     return this.http.post<StudentCourseDto>(`${this.baseUrl}/studentcourses/iscription`, studentCourseDto);
   }
 

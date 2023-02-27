@@ -10,6 +10,7 @@ import { ResetPasswordRequestComponent } from './components/reset-password-reque
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { InsideAppComponent } from './components/inside-app/inside-app.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { InsideAppComponent } from './components/inside-app/inside-app.component
     ResetPasswordRequestComponent,
     ResetPasswordComponent,
     NavbarComponent,
-    InsideAppComponent
+    InsideAppComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,

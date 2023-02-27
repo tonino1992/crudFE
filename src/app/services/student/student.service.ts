@@ -8,29 +8,28 @@ import { StudentDto } from '../../classes/studentDto';
   providedIn: 'root'
 })
 export class StudentService {
+
   private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
   getAllStudents(): Observable<StudentDto[]> {
     return this.http.get<StudentDto[]>(`${this.baseUrl}/students/all`);
-}
+  }
 
-addStudent(student: StudentDto): Observable<StudentDto> {
-  return this.http.post<StudentDto>(`${this.baseUrl}/students/add`, student);
-}
+  getStudentById(id: number): Observable<StudentDto> {
+    return this.http.get<StudentDto>(`${this.baseUrl}/students/${id}`);
+  }
 
-getStudentById(id: number): Observable<StudentDto> {
-  return this.http.get<StudentDto>(`${this.baseUrl}/students/${id}`);
-}
+  addStudent(studentDto: StudentDto): Observable<StudentDto> {
+    return this.http.post<StudentDto>(`${this.baseUrl}/students/add`, studentDto);
+  }
 
-updateStudent(student: StudentDto): Observable<StudentDto> {
-  return this.http.put<StudentDto>(`${this.baseUrl}/students/update`, student);
-}
+  updateStudent(studentDto: StudentDto): Observable<StudentDto> {
+    return this.http.put<StudentDto>(`${this.baseUrl}/students/update`, studentDto);
+  }
 
-deleteStudent(id: number): Observable<void> {
-  return this.http.delete<void>(`${this.baseUrl}/students/${id}`);
-}
-
-
+  deleteStudent(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/students/delete/${id}`);
+  }
 }

@@ -1,0 +1,23 @@
+<h1>Benvenuto {{userName}}</h1>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Materia</th>
+        <th scope="col">Ore di lezione</th>
+        <th scope="col">Docente</th>
+        <th scope="col">Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courses">
+        <td>{{ course.subject }}</td>
+        <td>{{ course.hourAmount }}</td>
+        <td>{{ course.teacherName }} {{ course.teacherSurname }}</td>
+        <td>
+            
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

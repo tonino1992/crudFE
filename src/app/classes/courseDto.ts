@@ -3,4 +3,5 @@ export interface CourseDto {
     subject: string;
     hourAmount: number;
     teacherId: number;
+    idDobe: boolean;
 }

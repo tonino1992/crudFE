@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CourseJoinTeacherDto } from '../../classes/courseJoinTeacherDto';
 import { CourseDto } from '../../classes/courseDto';
+import { environment } from 'src/environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
 
-  private baseUrl = '';
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -32,4 +33,5 @@ export class CourseService {
   deleteCourse(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/courses/delete/${id}`);
   }
+
 }

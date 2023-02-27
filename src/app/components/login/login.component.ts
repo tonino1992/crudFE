@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PersonDto } from '../../classes/personDto';
 import { UserService } from '../../services/user/user.service';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -53,6 +54,8 @@ export class LoginComponent implements OnInit {
         next: (jwt: string) => {
           this.message = "Login successful";
           console.log(jwt);
+          localStorage.setItem('jwt','Bearer ' + jwt);
+          this.router.navigate(['/app']);
         },
         error: (err: HttpErrorResponse) => {
           if (err.status === 404) {
@@ -67,8 +70,7 @@ export class LoginComponent implements OnInit {
           } else {
             this.error = true;
             this.message = err.error;
-            console.log(err.error);
-            
+            console.log(err.error);            
           }
         }
       });

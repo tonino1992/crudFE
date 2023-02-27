@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomepageComponent } from './components/homepage/homepage.component';
 import { InsideAppComponent } from './components/inside-app/inside-app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ResetPasswordRequestComponent } from './components/reset-password-request/reset-password-request.component';
@@ -12,7 +13,13 @@ const routes: Routes = [
   { path: 'signup', component: SignUpComponent },
   { path: 'reset-password-request', component: ResetPasswordRequestComponent },
   { path: 'reset-password/:id', component: ResetPasswordComponent },
-  { path: 'app', component: InsideAppComponent },
+  { path: 'app', redirectTo: '/app/home', pathMatch: 'full' },
+  {
+    path: 'app', component: InsideAppComponent,
+    children: [
+      { path: 'home', component: HomepageComponent }
+    ]
+  },
 ];
 
 @NgModule({
