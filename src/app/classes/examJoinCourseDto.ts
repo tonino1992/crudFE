@@ -6,6 +6,7 @@ export interface ExamJoinCourseDto {
     hour: Time;
     vote: number;
     classroom: string;
+    done: boolean;
     courseId: number;
     courseSubject: string;
     teacherName: string;

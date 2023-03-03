@@ -47,7 +47,7 @@ export class SignUpComponent implements OnInit {
   signup() {
     if (this.signUpForm.valid) {
       if (!this.passwordConfirmed()) {
-        alert("Controlla la password!");
+        alert("Controlla che le password corrispondano!");
         return;
       }
 
@@ -63,12 +63,10 @@ export class SignUpComponent implements OnInit {
           surname: this.signUpForm.value.surname,
           dateOfBirth: this.signUpForm.value.dateOfBirth
         };
-        console.log(teacherDto);
         this.teacherService.addTeacher(teacherDto).subscribe({
           next: (user: TeacherDto) => {
             if (user) {
               alert("Registrazione effettuata con successo!");
-              console.log(user);
             }
           },
           error: (err: HttpErrorResponse) => {
@@ -96,12 +94,10 @@ export class SignUpComponent implements OnInit {
           surname: this.signUpForm.value.surname,
           dateOfBirth: this.signUpForm.value.dateOfBirth
         };
-        console.log(studentDto);
         this.studentService.addStudent(studentDto).subscribe({
           next: (user: StudentDto) => {
             if (user) {
               alert("Registrazione effettuata con successo!");
-              console.log(user);
             }
           },
           error: (err: HttpErrorResponse) => {
@@ -117,8 +113,6 @@ export class SignUpComponent implements OnInit {
       }
     } else {
       alert("Per favore, compila tutti i campi!");
-      console.log(this.signUpForm);
-
     }
   }
 

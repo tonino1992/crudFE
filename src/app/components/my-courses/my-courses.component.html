@@ -1,0 +1,6 @@
+<div *ngIf="jwt.role == 'STUDENT'">
+    <app-student-my-courses></app-student-my-courses>
+</div>
+<div *ngIf="jwt.role == 'TEACHER'">
+    <app-teacher-my-courses></app-teacher-my-courses>
+</div>

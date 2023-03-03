@@ -16,31 +16,31 @@ export class TeacherService {
   constructor(private http: HttpClient) { }
 
   getAllTeachers(): Observable<TeacherDto[]> {
-    return this.http.get<TeacherDto[]>(`${this.baseUrl}/all`);
+    return this.http.get<TeacherDto[]>(`${this.baseUrl}/teachers/all`);
   }
 
   getTeacherById(id: number): Observable<TeacherDto> {
-    return this.http.get<TeacherDto>(`${this.baseUrl}/${id}`);
+    return this.http.get<TeacherDto>(`${this.baseUrl}/teachers/${id}`);
   }
 
   getTeacherCourses(id: number): Observable<CourseDto[]> {
-    return this.http.get<CourseDto[]>(`${this.baseUrl}/${id}/courses`);
+    return this.http.get<CourseDto[]>(`${this.baseUrl}/teachers/${id}/courses`);
   }
 
   getTeacherExams(id: number): Observable<ExamJoinCourseDto[]> {
-    return this.http.get<ExamJoinCourseDto[]>(`${this.baseUrl}/${id}/exams`);
+    return this.http.get<ExamJoinCourseDto[]>(`${this.baseUrl}/teachers/${id}/exams`);
   }
 
   addTeacher(teacherDto: TeacherDto): Observable<TeacherDto> {
-    return this.http.post<TeacherDto>(`${this.baseUrl}/add`, teacherDto);
+    return this.http.post<TeacherDto>(`${this.baseUrl}/teachers/add`, teacherDto);
   }
 
   updateTeacher(teacherDto: TeacherDto): Observable<TeacherDto> {
-    return this.http.put<TeacherDto>(`${this.baseUrl}/update`, teacherDto);
+    return this.http.put<TeacherDto>(`${this.baseUrl}/teachers/update`, teacherDto);
   }
 
   deleteTeacher(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}/teachers/delete/${id}`);
   }
 
 }

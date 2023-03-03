@@ -15,7 +15,7 @@ export class StudentExamService {
 
   constructor(private http: HttpClient) { }
 
-  bookStudentExam(studentExamDto: StudentExamDto): Observable<StudentExamDto> {
+  bookStudentExam(studentExamDto: {studentId: number, examId: number}): Observable<StudentExamDto> {
     return this.http.post<StudentExamDto>(`${this.baseUrl}/studentexams/booking`, studentExamDto);
   }
 

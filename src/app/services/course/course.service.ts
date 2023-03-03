@@ -34,4 +34,9 @@ export class CourseService {
     return this.http.delete<void>(`${this.baseUrl}/courses/delete/${id}`);
   }
 
+  getExamIdByCourseId(courseId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/courses/exams/${courseId}`);
+  }
+  
+
 }

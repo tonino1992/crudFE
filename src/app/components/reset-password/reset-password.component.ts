@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TokenService } from '../../services/token/token.service';
+import { TokenService } from '../../services/token-password/token.service';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({

@@ -1,0 +1,27 @@
+<h1>I miei corsi</h1>
+<br>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" class="text-center">Materia</th>
+                <th scope="col" class="text-center">Ore di lezione</th>
+                <th scope="col" class="text-center">Docente</th>
+                <th scope="col" class="text-center">Terminato</th>
+                <th scope="col" class="text-center">Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let course of courses">
+                <td class="text-center">{{ course.subject }}</td>
+                <td class="text-center">{{ course.hourAmount }}</td>
+                <td class="text-center">{{ course.teacherName }} {{ course.teacherSurname }}</td>
+                <td class="text-center">{{ course.done ? "Sì" : "No"}}</td>
+                <td class="text-center">
+                    <button class="btn btn-primary" [disabled]="!course.done" (click)="bookExam(course.id)">Prenota
+                        esame</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

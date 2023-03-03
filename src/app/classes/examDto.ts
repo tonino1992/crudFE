@@ -5,7 +5,7 @@ export interface ExamDto {
     day: Date;
     hour: Time;
     classroom: string;
-    isDone: boolean;
+    done: boolean;
     courseId: number;
   }
   

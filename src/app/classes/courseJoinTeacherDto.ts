@@ -1,10 +1,10 @@
-export interface CourseJoinTeacherDto {
+export class CourseJoinTeacherDto {
     id: number;
     subject: string;
     hourAmount: number;
-    isDone: boolean;
+    done: boolean;
     teacherId: number;
     teacherName: string;
     teacherSurname: string;
-    
 }
+

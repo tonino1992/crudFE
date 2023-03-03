@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { CourseJoinTeacherDto } from '../../classes/courseJoinTeacherDto';
 import { StudentCourseDto } from '../../classes/studentCourseDto';
 import { StudentDto } from '../../classes/studentDto';
@@ -16,7 +16,7 @@ export class StudentCourseService {
 
   constructor(private http: HttpClient) { }
 
-  enrollStudentInCourse(studentCourseDto: StudentCourseDto): Observable<StudentCourseDto> {
+  enrollStudentInCourse(studentCourseDto: {courseId: number, studentId: number}): Observable<StudentCourseDto> {
     return this.http.post<StudentCourseDto>(`${this.baseUrl}/studentcourses/iscription`, studentCourseDto);
   }
 
@@ -25,6 +25,6 @@ export class StudentCourseService {
   }
 
   getCoursesByStudent(id: number): Observable<CourseJoinTeacherDto[]> {
-    return this.http.get<CourseJoinTeacherDto[]>(`${this.baseUrl}/studentcourses/${id}/courses`);
+    return this.http.get<CourseJoinTeacherDto[]>(`${this.baseUrl}/studentcourses/${id}/courses`)
   }
 }

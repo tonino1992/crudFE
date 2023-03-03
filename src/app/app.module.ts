@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -10,7 +10,16 @@ import { ResetPasswordRequestComponent } from './components/reset-password-reque
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { InsideAppComponent } from './components/inside-app/inside-app.component';
+import { JwtInterceptor } from './config/jwt-interceptor';
+import { CommonModule } from '@angular/common';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { StudentHomeComponent } from './components/student-home/student-home.component';
+import { TeacherHomeComponent } from './components/teacher-home/teacher-home.component';
+import { CoursesComponent } from './components/courses/courses.component';
+import { MyCoursesComponent } from './components/my-courses/my-courses.component';
+import { StudentMyCoursesComponent } from './components/student-my-courses/student-my-courses.component';
+import { TeacherMyCoursesComponent } from './components/teacher-my-courses/teacher-my-courses.component';
+import { MangageExamsComponent } from './components/mangage-exams/mangage-exams.component';
 
 @NgModule({
   declarations: [
@@ -21,16 +30,26 @@ import { HomepageComponent } from './components/homepage/homepage.component';
     ResetPasswordComponent,
     NavbarComponent,
     InsideAppComponent,
-    HomepageComponent
+    HomepageComponent,
+    StudentHomeComponent,
+    TeacherHomeComponent,
+    CoursesComponent,
+    MyCoursesComponent,
+    StudentMyCoursesComponent,
+    TeacherMyCoursesComponent,
+    MangageExamsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

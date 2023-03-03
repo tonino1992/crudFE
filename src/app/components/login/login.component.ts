@@ -53,8 +53,7 @@ export class LoginComponent implements OnInit {
       this.userService.login(userDto).subscribe({
         next: (jwt: string) => {
           this.message = "Login successful";
-          console.log(jwt);
-          localStorage.setItem('jwt','Bearer ' + jwt);
+          localStorage.setItem('jwt', jwt);
           this.router.navigate(['/app']);
         },
         error: (err: HttpErrorResponse) => {

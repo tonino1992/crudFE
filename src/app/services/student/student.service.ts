@@ -13,7 +13,7 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
-  getAllStudents(): Observable<StudentDto[]> {
+  getAllStudents(): Observable<StudentDto[]> {    
     return this.http.get<StudentDto[]>(`${this.baseUrl}/students/all`);
   }
 
