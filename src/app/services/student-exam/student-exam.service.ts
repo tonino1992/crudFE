@@ -35,4 +35,9 @@ export class StudentExamService {
     return this.http.get<ExamJoinCourseDto[]>(`${this.baseUrl}/studentexams/${id}/examsdone`);
   }
 
+  getStudentExamsByExam(id: number): Observable<StudentExamDto[]> {
+    return this.http.get<StudentExamDto[]>(`${this.baseUrl}/studentexams/${id}/all`);
+  }
+  
+
 }

@@ -1,10 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { CourseJoinTeacherDto } from 'src/app/classes/courseJoinTeacherDto';
 import { JwtObject } from 'src/app/classes/jwtObject';
 import { CourseService } from 'src/app/services/course/course.service';
 import { JwtService } from 'src/app/services/jwt/jwt.service';
 import { StudentCourseService } from 'src/app/services/student-course/student-course.service';
+
 
 @Component({
   selector: 'app-courses',
@@ -13,8 +15,13 @@ import { StudentCourseService } from 'src/app/services/student-course/student-co
 })
 export class CoursesComponent implements OnInit {
 
+  dropdownSettings: IDropdownSettings;
+  lista = [{}]
+  selectedItemsSet: Set<string> = new Set();
+  showConcludedCourses = false;
   courses: CourseJoinTeacherDto[] = [];
   jwt: JwtObject;
+ 
 
   constructor(private jwtService: JwtService, private courseService: CourseService,
     private studentCourseService: StudentCourseService) { }
@@ -22,7 +29,54 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
     this.jwt = this.jwtService.decodeJwt();
     this.loadAllCourses();
+    setTimeout(() => {
+      this.generateDropdownList();
+      this.setDropdown();
+    }, 1000)
+
   }
+
+  generateDropdownList() {
+    let i = 0;
+    const uniqueSubjects = Array.from(new Set(this.courses.map(course => course.subject)));
+    const dropdownList = uniqueSubjects.map(subject => ({ id: i++, text: subject }));
+    this.lista = dropdownList;   
+  }
+  
+
+  setDropdown() {
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    }
+  }
+
+  onItemSelect(selectedItem: any) {
+    this.selectedItemsSet.add(selectedItem.text);
+    
+  }
+  
+  onItemDeSelect(selectedItem: any) {
+    this.selectedItemsSet.delete(selectedItem.text);
+  }
+
+  onSelectAll(items: any) {
+    for (let item of items) {
+      this.selectedItemsSet.add(item.text);
+    }
+  }
+  
+  onDeSelectAll(items: any) {
+    this.selectedItemsSet.clear();
+  }
+  
+  
+
 
   enrollStudentInCourse(courseId: number) {
     const studentCourseDto = { courseId: courseId, studentId: this.jwt.id }

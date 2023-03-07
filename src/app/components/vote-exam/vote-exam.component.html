@@ -1,0 +1,19 @@
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" class="text-center">Nome studente</th>
+            <th scope="col" class="text-center">Voto</th>
+            <th scope="col" class="text-center">Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let studentExam of studentExams">
+            <td class="text-center">{{ studentExam.studentName }}</td>
+            <td class="text-center">{{ studentExam.vote > 0 ? studentExam.vote :'Non assegnato' }}</td>
+            <td class="text-center">
+                <button class="btn btn-primary" [disabled]="studentExam.vote > 0" (click)="assignGrade(studentExam)">Assegna
+                    voto</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

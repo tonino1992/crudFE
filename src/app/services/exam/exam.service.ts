@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ExamDto } from '../../classes/examDto';
 import { ExamJoinCourseDto } from '../../classes/examJoinCourseDto';
-import { StudentDto } from '../../classes/studentDto';
 import { environment } from 'src/environment/environment';
 
 @Injectable({

@@ -18,6 +18,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">I miei esami</a>
             </li>
+            <li class="nav-item" *ngIf="jwt.role == 'STUDENT'">
+                <a class="nav-link" routerLink="/app/exam-result">Libretto</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/app/contact-us">Contattaci</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Account</a>
             </li>

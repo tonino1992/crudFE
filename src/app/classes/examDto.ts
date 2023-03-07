@@ -1,7 +1,7 @@
 import { Time } from "@angular/common";
 
 export interface ExamDto {
-    id: number;
+    id?: number;
     day: Date;
     hour: Time;
     classroom: string;

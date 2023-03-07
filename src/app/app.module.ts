@@ -19,7 +19,16 @@ import { CoursesComponent } from './components/courses/courses.component';
 import { MyCoursesComponent } from './components/my-courses/my-courses.component';
 import { StudentMyCoursesComponent } from './components/student-my-courses/student-my-courses.component';
 import { TeacherMyCoursesComponent } from './components/teacher-my-courses/teacher-my-courses.component';
-import { MangageExamsComponent } from './components/mangage-exams/mangage-exams.component';
+import { ManageExamsComponent } from './components/mangage-exams/mangage-exams.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { ExamResultsComponent } from './components/exam-results/exam-results.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ExamDetailsComponent } from './components/exam-details/exam-details.component';
+import { VoteExamComponent } from './components/vote-exam/vote-exam.component';
+import { AddExamComponent } from './components/add-exam/add-exam.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +46,12 @@ import { MangageExamsComponent } from './components/mangage-exams/mangage-exams.
     MyCoursesComponent,
     StudentMyCoursesComponent,
     TeacherMyCoursesComponent,
-    MangageExamsComponent
+    ManageExamsComponent,
+    ContactUsComponent,
+    ExamResultsComponent,
+    ExamDetailsComponent,
+    VoteExamComponent,
+    AddExamComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +59,11 @@ import { MangageExamsComponent } from './components/mangage-exams/mangage-exams.
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    CKEditorModule,
+    NgMultiSelectDropDownModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

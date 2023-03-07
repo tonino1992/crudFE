@@ -1,26 +1,38 @@
 <h1>I corsi a tua disposizione</h1>
 <br>
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col" class="text-center">Materia</th>
-                <th scope="col" class="text-center">Ore di lezione</th>
-                <th scope="col" class="text-center">Docente</th>
-                <th scope="col" class="text-center">Terminato</th>
-                <th scope="col" class="text-center">Azioni</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let course of courses">                
-                <td class="text-center" *ngIf="!course.done">{{ course.subject }}</td>
-                <td class="text-center" *ngIf="!course.done">{{ course.hourAmount }}</td>
-                <td class="text-center" *ngIf="!course.done">{{ course.teacherName }} {{ course.teacherSurname }}</td>
-                <td class="text-center" *ngIf="!course.done">{{ course.done ? "Sì" : "No"}}</td>
-                <td class="text-center" *ngIf="!course.done">
-                    <button class="btn btn-primary" (click)="enrollStudentInCourse(course.id)">Iscriviti</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<ng-multiselect-dropdown [placeholder]="'Filtro materie'" [settings]="dropdownSettings" [data]="lista"
+    (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)" (onSelectAll)="onSelectAll($event)"
+    (onDeSelectAll)="onDeSelectAll($event)">
+</ng-multiselect-dropdown>
+<input type="checkbox" [(ngModel)]="showConcludedCourses"> Mostra corsi conclusi
+<br>
+<ng-container *ngIf="courses.length > 0">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" class="text-center">Materia</th>
+                    <th scope="col" class="text-center">Ore di lezione</th>
+                    <th scope="col" class="text-center">Docente</th>
+                    <th scope="col" class="text-center">Terminato</th>
+                    <th scope="col" class="text-center">Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let course of courses">
+                    <ng-container
+                        *ngIf="selectedItemsSet.has(course.subject) && (showConcludedCourses || !course.done)">
+                        <td class="text-center">{{ course.subject }}</td>
+                        <td class="text-center">{{ course.hourAmount }}</td>
+                        <td class="text-center">{{ course.teacherName }} {{ course.teacherSurname }}</td>
+                        <td class="text-center">{{ course.done ? "Sì" : "No"}}</td>
+                        <td class="text-center">
+                            <button class="btn btn-primary"
+                                (click)="enrollStudentInCourse(course.id)">Iscriviti</button>
+                        </td>
+                    </ng-container>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>

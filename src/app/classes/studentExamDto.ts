@@ -1,5 +1,7 @@
 export interface StudentExamDto {
-    bookingDate: Date;
+    bookingDate?: Date;
+    studentName: string;
+    studentSurname: string;
     vote: number;
     studentId: number;
     examId: number;

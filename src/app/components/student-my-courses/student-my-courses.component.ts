@@ -50,8 +50,8 @@ export class StudentMyCoursesComponent implements OnInit {
           examId: examId
         };
         this.studentExamService.bookStudentExam(studentExamDto).subscribe({
-          next: (studentExamDto: StudentExamDto) => {
-            alert("Prenotazione riuscita!")
+          next:() => {
+            alert("Prenotazione riuscita!");
           },
           error: (err: HttpErrorResponse) => {
             if (err.status === 404) {

@@ -6,6 +6,10 @@ import { ExamJoinCourseDto } from 'src/app/classes/examJoinCourseDto';
 import { JwtObject } from 'src/app/classes/jwtObject';
 import { JwtService } from 'src/app/services/jwt/jwt.service';
 import { TeacherService } from 'src/app/services/teacher/teacher.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ManageExamsComponent } from '../mangage-exams/mangage-exams.component';
+import { AddExamComponent } from '../add-exam/add-exam.component';
+
 
 @Component({
   selector: 'app-teacher-home',
@@ -26,7 +30,7 @@ export class TeacherHomeComponent implements OnInit {
   itemsExamPerPage = 5;
   examPages: number[] = [];
 
-  constructor(private jwtService: JwtService, private teacherService: TeacherService, private router: Router) { }
+  constructor(private jwtService: JwtService, private teacherService: TeacherService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.jwt = this.jwtService.decodeJwt()!;
@@ -68,10 +72,21 @@ export class TeacherHomeComponent implements OnInit {
     })
   }
 
-  addExam(courseId: number) { }
+  addExam(courseId: number) { 
+    const dialogRef = this.dialog.open(AddExamComponent, {
+      width: '500px', // specifica la larghezza del modal
+      data: { courseId: courseId } // passa l'id dell'corso al componente modal
+    });
+  }
+
+  
   manageExam(examId: number) {
-    this.router.navigate(['app/manageexam/', examId])
-   }
+    const dialogRef = this.dialog.open(ManageExamsComponent, {
+      width: '500px', // specifica la larghezza del modal
+      data: { examId: examId } // passa l'id dell'esame al componente modal
+    });
+  }
+
   //FINE METODI INSEGNANTE
 
   //GESTIONE DELLA PAGINAZIONE

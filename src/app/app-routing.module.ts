@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { InsideAppComponent } from './components/inside-app/inside-app.component';
 import { LoginComponent } from './components/login/login.component';
-import { MangageExamsComponent } from './components/mangage-exams/mangage-exams.component';
+import { ManageExamsComponent } from './components/mangage-exams/mangage-exams.component';
 import { MyCoursesComponent } from './components/my-courses/my-courses.component';
 import { ResetPasswordRequestComponent } from './components/reset-password-request/reset-password-request.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
@@ -24,7 +25,7 @@ const routes: Routes = [
       { path: 'home', component: HomepageComponent },
       {path: 'courses', component: CoursesComponent},
       {path: 'mycourses', component: MyCoursesComponent},
-      {path: 'manageexam/:id', component: MangageExamsComponent}
+      {path: 'contact-us', component: ContactUsComponent}
     ]
   },
 ];
