@@ -6,5 +6,7 @@ export interface JwtObject {
     role : string,
     sub : string,
     surname : string
+    email : string,
+    userId: string
   }
   

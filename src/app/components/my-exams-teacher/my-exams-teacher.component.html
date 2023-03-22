@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Gli esami che devo tenere</h1>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" class="text-center">Materia</th>
+          <th scope="col" class="text-center">Data</th>
+          <th scope="col" class="text-center">Ora</th>
+          <th scope="col" class="text-center">Aula</th>
+          <th scope="col" class="text-center">Azioni</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let exam of exams">
+          <td class="text-center">{{ exam.courseSubject }}</td>
+          <td class="text-center">{{ exam.day | date: 'dd/MM/yyyy'}}</td>
+          <td class="text-center">{{ exam.hour.toString().slice(0, 5)}}</td>
+          <td class="text-center">{{ exam.classroom }}</td>
+          <td class="text-center">
+            <button class="btn btn-primary" (click)="manageExam(exam.id)">Gestisci esame</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

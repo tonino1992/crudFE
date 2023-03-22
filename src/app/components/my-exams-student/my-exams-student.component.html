@@ -1,22 +1,23 @@
 <div class="container">
-    <h1>Il mio Libretto</h1>
-    <br>
+    <h1>I miei esami</h1>
     <div class="table-responsive table-pagination">
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col" class="text-center">Materia</th>
                     <th scope="col" class="text-center">Insegnante</th>
-                    <th scope="col" class="text-center">Voto</th>
-                    <th scope="col" class="text-center">Risultato</th>
+                    <th scope="col" class="text-center">Data</th>
+                    <th scope="col" class="text-center">Ora</th>
+                    <th scope="col" class="text-center">Aula</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let exam of exams">
-                    <td class="text-center">{{ exam.subject }}</td>
+                    <td class="text-center">{{ exam.courseSubject }}</td>
                     <td class="text-center">{{ exam.teacherName }} {{ exam.teacherSurname }}</td>
-                    <td class="text-center">{{exam.vote}}</td>
-                    <td class="text-center">{{result(exam.vote)}}</td>
+                    <td class="text-center">{{exam.day | date: 'dd/MM/yyyy' }}</td>
+                    <td class="text-center">{{ exam.hour.toString().slice(0, 5)}}</td>
+                    <td class="text-center">{{ exam.classroom }}</td>
                 </tr>
             </tbody>
         </table>

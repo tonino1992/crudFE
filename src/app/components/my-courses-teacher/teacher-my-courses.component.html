@@ -1,5 +1,7 @@
+<div class="container">
 <h1>I corsi che insegno</h1>
 <br>
+<button type="button" class="btn btn-success mb-3" (click)="addCourse()">+ Aggiungi corso</button>
 <div class="table-responsive table-pagination">
   <table class="table table-striped">
     <thead class="thead-dark">
@@ -11,15 +13,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="let course of courses">
+      <tr *ngFor="let course of courses">
         <td class="text-center">{{ course.subject }}</td>
         <td class="text-center">{{ course.hourAmount }}</td>
         <td class="text-center">{{ course.done ? "Sì" : "No"}}</td>
         <td class="text-center">
-          <button class="btn btn-primary" [disabled]="course.done" (click)="addExam(course.id)">Organizza
+          <button class="btn btn-primary" [disabled]="course.done" (click)="addExam(course.id!)">Organizza
             esame</button>
         </td>
       </tr>
     </tbody>
   </table>
+</div>
+</div>

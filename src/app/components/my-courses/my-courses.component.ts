@@ -17,6 +17,4 @@ constructor(private jwtService: JwtService){}
     this.jwt = this.jwtService.decodeJwt();
   }
 
-
-
 }

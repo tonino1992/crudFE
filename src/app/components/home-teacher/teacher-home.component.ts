@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { CourseDto } from 'src/app/classes/courseDto';
 import { ExamJoinCourseDto } from 'src/app/classes/examJoinCourseDto';
 import { JwtObject } from 'src/app/classes/jwtObject';

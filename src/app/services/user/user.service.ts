@@ -4,6 +4,7 @@ import { UserDto } from '../../classes/userDto';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
 import { PersonDto } from '../../classes/personDto';
+import { ChangeUserIdDto } from 'src/app/classes/changeUserIdDto';
 
 
 @Injectable({
@@ -33,6 +34,10 @@ export class UserService {
 
   recuperaPassword(userId: string): Observable<any> {
     return this.http.post(`${this.baseUrl}/users/recupera-password`, userId);
+  }
+
+  changeUserId(userIds: ChangeUserIdDto): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/users/change-userid`, userIds);
   }
 
 }

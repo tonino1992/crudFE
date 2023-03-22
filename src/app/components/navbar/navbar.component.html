@@ -16,7 +16,7 @@
                 <a class="nav-link" routerLink="/app/mycourses">I miei corsi</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">I miei esami</a>
+                <a class="nav-link" routerLink="/app/myexams">I miei esami</a>
             </li>
             <li class="nav-item" *ngIf="jwt.role == 'STUDENT'">
                 <a class="nav-link" routerLink="/app/exam-result">Libretto</a>
@@ -25,7 +25,7 @@
                 <a class="nav-link" routerLink="/app/contact-us">Contattaci</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Account</a>
+                <a class="nav-link" routerLink="/app/account">Account</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="" (click)="logout()">Logout</a>

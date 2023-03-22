@@ -38,6 +38,11 @@ export class StudentExamService {
   getStudentExamsByExam(id: number): Observable<StudentExamDto[]> {
     return this.http.get<StudentExamDto[]>(`${this.baseUrl}/studentexams/${id}/all`);
   }
+
+  getDoneExamsByStudent(id: number): Observable<StudentExamDto[]> {
+    return this.http.get<StudentExamDto[]>(`${this.baseUrl}/studentexams/${id}/doneexams`);
+  }
+  
   
 
 }

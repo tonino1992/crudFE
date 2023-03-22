@@ -52,7 +52,7 @@ export class AddExamComponent implements OnInit{
   onSubmit() {
     if (this.examForm.valid) {
       const examDto: ExamDto = {
-        courseId: this.course.id,
+        courseId: this.course.id!,
         day: this.examForm.getRawValue().date,
         hour: this.examForm.getRawValue().time as Time,
         classroom: this.examForm.getRawValue().room,
@@ -65,6 +65,7 @@ export class AddExamComponent implements OnInit{
           this.courseService.updateCourse(this.course).subscribe({
             next: () => {
               this.dialogRef.close();
+              window.location.reload();
             },
             error: (err: HttpErrorResponse) => {
               alert('Errore nell\'aggiornamento del corso');

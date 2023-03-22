@@ -5,6 +5,7 @@ import { CourseDto } from 'src/app/classes/courseDto';
 import { JwtObject } from 'src/app/classes/jwtObject';
 import { JwtService } from 'src/app/services/jwt/jwt.service';
 import { TeacherService } from 'src/app/services/teacher/teacher.service';
+import { AddCourseComponent } from '../add-course/add-course.component';
 import { AddExamComponent } from '../add-exam/add-exam.component';
 
 @Component({
@@ -44,4 +45,11 @@ export class TeacherMyCoursesComponent {
       data: { courseId: courseId } // passa l'id dell'corso al componente modal
     });
   }
+
+  addCourse(){
+    const dialogRef = this.dialog.open(AddCourseComponent, {
+      width: '500px', // specifica la larghezza del modal
+    });
+  }
+
 }

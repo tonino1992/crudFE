@@ -36,6 +36,7 @@ export class StudentHomeComponent implements OnInit {
     this.loadStudentCourses();
     this.loadStudentExamToDo();
   }
+  
   //METODI STUDENTE
   loadStudentExamToDo() {
     this.studentExamService.getStudentExamsToDo(this.jwt.id).subscribe({
